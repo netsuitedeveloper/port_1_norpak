@@ -1,0 +1,352 @@
+<?xml version="1.0"?><!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+<head>
+<#if .locale == "ru_RU">
+    <link name="verdana" type="font" subtype="opentype" src="${nsfont.verdana}" src-bold="${nsfont.verdana_bold}" bytes="2" />
+</#if>
+    <macrolist>
+        <macro id="nlheader">
+            <table class="header" style="width: 100%;">
+              <tr>
+                <td align="left" style="width: 43%;">
+                  <table style="width:100%">
+                    <tr>
+                      <td align="left" style="width : 50%;"><img src="{{logoUrl}}" style="width: 150px; height: 47px; margin-bottom: 2px;" /></td>
+                      <td align="left" style="width : 50%;"><span class="nameandaddress">{{companyName}}</span><br/>{{mainaddress_text}}<br/></td>
+                    </tr>
+                    <tr>
+                      <td align="left" style="width: 50%;"><b>Phone:</b> 973-589-4200</td>
+                      <td align="left" style="width: 50%"><b>Fax:</b> {{fax}}</td>
+                    </tr>
+                    <tr>
+                      <td align="left" style="width: 50%;">sales@norpak.net</td>
+                      <td align="left" style="width: 50%">{{company_url}}</td>
+                    </tr>
+                  </table>
+                </td>
+                <td align="left" style="width: 32%;"><barcode codetype="code128" showtext="true" value="{{TRAN_ID}}"/></td>
+                <td align="right" style="width: 25%;">
+                  <table style="width: 100%;">
+                    <tr>
+                      <td align="right" style="width : 100%;"><span class="title">Bill of Lading</span></td>
+                    </tr>
+                    <tr>
+                      <td align="right" style="width : 100%;"><span class="number">#{{TRAN_ID_}}</span></td>
+                    </tr>
+                    <tr>
+                      <td align="right" style="width : 100%;">${record.trandate}</td>
+                    </tr>
+                  </table>
+                </td>
+			</tr>
+          </table>
+          <table style="width: 100%;">
+            <tr>
+              <td style="width: 100%"><hr /></td>
+            </tr>
+          </table>
+        </macro>
+        <macro id="nlfooter">
+            <table class="footer" style="width : 100%;">
+              <tr>
+				<td align="center" style="width : 100%;"><pagenumber/> of <totalpages/></td>
+			  </tr>
+          </table>
+        </macro>
+    </macrolist>
+    <style type="text/css">
+	table {
+        <#if .locale == "zh_CN">
+            font-family: stsong, sans-serif;
+        <#elseif .locale == "zh_TW">
+            font-family: msung, sans-serif;
+        <#elseif .locale == "ja_JP">
+            font-family: heiseimin, sans-serif;
+        <#elseif .locale == "ko_KR">
+            font-family: hygothic, sans-serif;
+        <#elseif .locale == "ru_RU">
+            font-family: verdana;
+        <#else>
+            font-family: sans-serif;
+        </#if>
+      		font-size : 7pt;
+            table-layout: fixed;
+        }
+        th {
+            font-weight: bold;
+            /*font-size: 8pt;*/
+          	font-size : 7pt;
+            vertical-align: middle;
+            padding: 5px 6px 3px;
+            background-color: #e3e3e3;
+            color: #333333;
+        }
+        td {
+            padding: 4px 6px;
+        }
+        b {
+            font-weight: bold;
+            color: #333333;
+        }
+      	.header table {
+          width : 100%;
+        }
+        table.header td {
+            padding: 0;
+            font-size: 10pt;
+          	width: 2000px;
+        }
+        table.footer td {
+            padding: 0;
+            font-size: 8pt;
+        }
+      table.footer {
+        width : 100%;
+      }
+      	
+        table.itemtable th {
+          /*
+            padding-bottom: 10px;
+            padding-top: 10px;
+          */
+            padding-bottom: 5px;
+            padding-top: 5px;
+        }
+        table.body td {
+            padding-top: 2px;
+        }
+        td.addressheader {
+          	/*
+            font-size: 8pt;*/
+          	font-size : 7pt;
+            font-weight: bold;
+            padding-top: 6px;
+            padding-bottom: 2px;
+        }
+        td.address {
+            padding-top: 0;
+        }
+        span.title {
+            font-size: 24pt;
+        }
+        span.number {
+          	font-size: 14pt;
+        }
+        span.itemname {
+            font-weight: bold;
+            line-height: 150%;
+        }
+        div.returnform {
+            width: 100%;
+            /* To ensure minimal height of return form */
+            height: 200pt;
+            page-break-inside: avoid;
+            page-break-after: avoid;
+        }
+        hr {
+            border-top: 0px dashed #d3d3d3;
+            width: 100%;
+            color: #ffffff;
+            background-color: #ffffff;
+            height: 1px;
+        }
+      td.box {
+        border-top: 1px;
+        border-bottom: 1px;
+        border-left: 1px;
+        border-right: 1px;
+        border-color: black;
+        margin-bottom: 5px;
+        height: 40px;
+        width : 8%;
+      }
+      table.pallet {
+        /*
+        margin-top: 30px;
+        margin-bottom: 30px;*/
+        width: 100%;
+        page-break-inside: auto;
+      }
+
+      td.signature {
+        margin-top: 20px;
+        width : 60%;
+      }
+      table.signature {
+        margin-top : 40px;
+        width : 100%;
+      }
+
+      .salesOrder {
+        font-weight: bold;
+        /*font-size: 8pt;*/
+        font-size: 7pt;
+      }
+      div.driver {
+        background-image: url("https://system.sandbox.netsuite.com/core/media/media.nl?id=4246&amp;c=3828377&amp;h=cf856c2d84b2e6f9bb41");
+        height: 600pt;
+      }
+      div.customer {
+        background-image: url("https://system.sandbox.netsuite.com/core/media/media.nl?id=4248&amp;c=3828377&amp;h=3b96b74719d2c6704ad6");
+        height: 600pt;
+        page-break-inside: avoid;
+      }
+      div.packList {
+        background-image: url("https://system.sandbox.netsuite.com/core/media/media.nl?id=9630&amp;c=3828377&amp;h=a5a90478dbb9ed84183d");
+        height: 600pt;
+      }
+	  td.angry {
+        /*font-size: 12pt;*/
+        font-size : 10pt;
+        color: red;
+        font-weight: bold;
+      }
+      .big_shipped {
+        /*font-size: 12pt;*/
+        font-size : 9pt;
+      }
+      tr.alt_row td {
+        background-color: #efefef;
+      }
+      span.nameandaddress {
+          font-weight : bold;
+          text-transform : uppercase;
+      }
+</style>
+</head>
+<#if record.shipmethod == "134"><#assign pages = 3/><#else /><#assign pages = 2/></#if>
+<body header="nlheader" header-height="10%" footer="nlfooter" footer-height="5%" padding="0.375in 0.375in 0.1in 0.375in" size="Letter">
+  <#list 1..pages as pageBackground>
+    <#if pageBackground == 1>
+    <div class="driver">
+    <#elseif pageBackground == 2>
+    <div class="customer">
+    <#else />
+    <div class="packList">
+    </#if>
+	
+<table style="width: 100%; margin-top: 1px;"><tr>
+	<td class="addressheader">Ship To</td> <!-- ${salesorder.shipaddress@label} -->
+<!--	<td align="left"><span class="salesOrder">${salesorder@title}</span></td> -->
+	<td align="left"><span class="salesOrder"></span></td> 
+	</tr>
+	<tr>
+	<td class="address">{{shipaddress}}</td> <!-- ${salesorder.shipaddress} -->
+<!--	<td align="left">#${salesorder.tranid}</td> -->
+	<td align="left"></td> 
+	</tr>
+	<tr>
+	<td class="addressheader">Phone</td>
+	<#if "{{memo}}"?contains("CO")>	<!-- salesorder.memo?contains("CO") -->
+	<td class="addressheader">Legacy Sales Order #</td>
+	</#if></tr>
+	<tr>
+	<td>${record.shipphone}</td>
+	<#if "{{memo}}"?contains("CO")>	<!-- salesorder.memo?contains("CO") -->
+	<td class="address">Memo</td>	<!-- ${salesorder.memo@label} -->
+	</#if></tr>
+    
+  	<#if record.shipmethod == "134">
+      <tr>
+        <td class="angry">Call ${record.shipphone} for a delivery appointment.</td>
+		  <#if record.custbody_outsidecarrier == "1584"> <!-- "Estes Express Lines" -->
+            <td class="angry">Apply Pallet Rate</td>
+          </#if>
+          <#if record.custbody_outsidecarrier == "1653"> <!-- "Ward Trucking, LLC" -->
+            <td class="angry">Apply Pallet Rate</td>
+          </#if>
+          <#if record.custbody_outsidecarrier == "1842"> <!-- "JSA Jewelers Shipping Association" -->
+            <td class="angry">Apply Pallet Rate</td>
+          </#if>
+          <#if record.custbody_outsidecarrier == "1560"> <!-- "CR Express Trucking LLC" -->
+            <td class="angry">Apply Pallet Rate</td>
+          </#if>
+      </tr>
+    </#if>
+  	<tr>
+      <td class="address">${record.custbody_custmemo}</td>
+  	</tr>
+</table>
+
+     
+<table class="body" style="width: 100%; margin-top: 10px;"><tr>
+	<th>Fulfillment Date</th>
+	<#if ({{linkedtrackingnumbers}})?has_content><th>Tracking Number</th></#if>
+	<th><!--${record.shipmethod@label}-->Ship Via</th>
+  	<#if record.custbody_shipmentconf?has_content><th><!--${record.custbody_shipmentconf@label}-->Confirmation Number</th></#if>
+    <th>${record.custbody_carrierpayment@label}</th>
+<!--	<th>Customer PO #</th>	-->
+	</tr>
+	<tr>
+	<td>${record.custbody_shipdate}</td>
+	<#if ({{linkedtrackingnumbers_}})?has_content><td>{{linkedtrackingnumbers__}}</td></#if>
+      
+    <#if record.shipmethod == "134" && record.custbody_outsidecarrier?has_content><td>${record.custbody_outsidecarrier}</td><#else/><td>${record.shipmethod}</td></#if>
+    <!--<td>${record.shipmethod}</td>-->
+  	<#if record.custbody_shipmentconf?has_content><td>${record.custbody_shipmentconf}</td></#if>
+    <td>Prepaid</td>
+<!--	<td>${record.createdfrom.otherrefnum}</td> -->
+	</tr>
+</table>
+
+<table class="itemtable" style="width: 100%; margin-top: 10px;">
+<thead>
+	<tr>
+    <th colspan="{{customer_item_label}}"><!--${record.item[0].itemname@label}-->Item</th>
+	<th colspan="8"><!--${record.item[0].description@label}-->Description</th>
+	<th align="right" colspan="4">Ordered</th>
+	<th align="right" colspan="4"><!--${salesorder.item[0].quantitybackordered@label}-->Back Ordered</th>
+	<th align="right" colspan="4" class="big_shipped">Shipped</th>
+	<th align="right" colspan="6" class="big_shipped">Customer PO #</th>
+	<th align="right" colspan="4" class="big_shipped">Sales Order</th>
+	</tr>
+</thead>
+<!-- start items -->
+
+{{itemTable}}
+
+<table class="signature"><tr>
+  	<td>Pallet(s) used:</td>
+  	<td class="box">&nbsp;</td>
+	<td class="signature" style="width : 15%;padding : 0px 0px 0px 10px;align: right">Carrier Signature:</td>
+	<td class="signature">___________________________________________________________</td>
+	</tr>
+	<tr>
+  	<td>Empty Pallet(s) returned:</td>
+  	<td class="box">&nbsp;</td>
+	<td class="signature" style="width : 15%;padding : 0px 0px 0px 10px;align: right">Customer Signature:</td>
+	<td class="signature">___________________________________________________________</td>
+	</tr></table>
+    
+    <table class="pallet">
+    <#if record.shipmethod == "134">
+    <tr>
+      <td colspan="20"><em>Shipment Class: ${record.custbody_shipmentclassnumber}</em></td>
+    </tr>
+    </#if>
+      <tr>
+	<td colspan="20" style="margin-bottom:10px;font-size : 1.05em;"><b><em>Estimated Total Weight: {{WEIGHT_sum}} lbs.&nbsp;</em></b></td>
+  	<td colspan="20" style="font-size: 1.05em;"> <b><i>Total Items Delivered: {{TOTAL_sum}}</i></b></td>
+	</tr>
+	<!--
+	<tr>
+	<td colspan="15">Pallet(s) used:</td>
+	<td class="box" colspan="4">&nbsp;</td>
+	<td colspan="10">&nbsp;</td>
+	<td colspan="15">Empty Pallet(s) returned:</td>
+	<td class="box" colspan="4">&nbsp;</td>
+	<td colspan="10">&nbsp;</td>
+	</tr>
+    <tr>
+    <td colspan="15"><b>Total Items Delivered:</b></td>
+    <td colspan="4"><b>${total}</b></td>
+  	</tr>-->
+</table>
+
+</div>
+<#if pageBackground != pages>
+<pbr/>
+</#if>
+</#list>
+</body>
+</pdf>
